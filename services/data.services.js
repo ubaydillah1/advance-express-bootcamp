@@ -1,8 +1,28 @@
 import db from "../db.js";
 
-// SELECT All Data
-export async function getAllData() {
-  const [rows] = await db.query("SELECT * FROM class");
+// SELECT All Data dengan Filter, Sort, dan Search
+export async function getAllData(filterCategoryId, sortField, search) {
+  let query = "SELECT * FROM class WHERE 1=1";
+  const queryParams = [];
+
+  // Menambahkan filter berdasarkan category_id
+  if (filterCategoryId) {
+    query += " AND category_id = ?";
+    queryParams.push(filterCategoryId);
+  }
+
+  // Menambahkan pencarian
+  if (search) {
+    query += " AND (title LIKE ? OR description LIKE ?)";
+    queryParams.push(`%${search}%`, `%${search}%`);
+  }
+
+  // Menambahkan pengurutan
+  if (sortField) {
+    query += ` ORDER BY ${sortField}`;
+  }
+
+  const [rows] = await db.query(query, queryParams);
   return rows;
 }
 

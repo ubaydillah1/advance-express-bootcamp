@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export function verifyToken(req, res, next) {
-  const token = req.headers.authorization?.split(" ")[1]; // Ambil token dari header
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
     return res
@@ -14,7 +14,7 @@ export function verifyToken(req, res, next) {
       return res.status(401).json({ error: "Failed to authenticate token." });
     }
 
-    req.userId = decoded.id; // Simpan user ID dari token ke request
-    next(); // Lanjutkan ke route berikutnya
+    req.userId = decoded.id;
+    next();
   });
 }

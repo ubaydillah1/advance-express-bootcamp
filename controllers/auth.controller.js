@@ -72,8 +72,9 @@ export async function login(req, res) {
     }
 
     const token = sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
+
     return res.json({ message: "Login successful", token });
   } catch (err) {
     console.error("Authentication error:", err);

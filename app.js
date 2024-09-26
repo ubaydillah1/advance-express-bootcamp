@@ -1,7 +1,6 @@
 import dataRoutes from "./routes/data.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import express from "express";
-import pool from "./db.js";
 
 const app = express();
 
