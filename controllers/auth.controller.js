@@ -5,10 +5,7 @@ import db from "../db.js";
 import { config } from "dotenv";
 import { fileURLToPath } from "url";
 
-config({
-  path: path.join(path.dirname(fileURLToPath(import.meta.url)), "../.env"),
-});
-
+config();
 const { sign } = jwt;
 
 export async function register(req, res) {
