@@ -4,9 +4,9 @@ import * as dataService from "../services/data.services.js";
 export async function getAllData(req, res) {
   try {
     // Mengambil query params
-    const filterCategoryId = req.query.filter; // Misalkan filter dikirim sebagai ?filter=1
-    const sortField = req.query.sort; // Misalkan sort dikirim sebagai ?sort=title
-    const search = req.query.search; // Misalkan search dikirim sebagai ?search=math
+    const filterCategoryId = req.query.filter;
+    const sortField = req.query.sort;
+    const search = req.query.search;
 
     // Memanggil service dengan parameter
     const data = await dataService.getAllData(
