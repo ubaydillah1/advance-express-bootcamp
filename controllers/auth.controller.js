@@ -79,7 +79,6 @@ export async function login(req, res) {
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    // Cek apakah email sudah diverifikasi
     if (user.verification_token !== null) {
       return res
         .status(400)
@@ -90,7 +89,7 @@ export async function login(req, res) {
       expiresIn: "1d",
     });
 
-    return res.json({ message: "Login successful", token });
+    return res.status(200).json({ message: "Login successful", token });
   } catch (err) {
     console.error("Authentication error:", err);
     return res.status(500).json({ error: "Error during authentication" });
